@@ -85,7 +85,7 @@ export default function BandsCard({ bands, description, isFavorite = false, onTo
                 aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
                 onClick={() => onToggleFavorite?.(bands)}
             >
-                <span aria-hidden="true">{isFavorite ? "❤" : "♡"}</span>
+                <span aria-hidden="true"></span>
                 {isFavorite ? "อยู่ในรายการโปรด" : "เพิ่มเป็นรายการโปรด"}
 
             </button>

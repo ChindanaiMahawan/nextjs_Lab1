@@ -8,14 +8,14 @@ type BandsExplorerProps = {
 };
 
 export default function BandsExplorer({ bands }: BandsExplorerProps) {
-// สร้าง state สำหรับเก็บ keyword ที่ผู้ใช้พิมพ์เข้ามา และ state สำหรับเก็บ id ของวงดนตรีที่ผู้ใช้กด favorite
+    // สร้าง state สำหรับเก็บ keyword ที่ผู้ใช้พิมพ์เข้ามา และ state สำหรับเก็บ id ของวงดนตรีที่ผู้ใช้กด favorite
     const [keyword, setKeyword] = useState("");
     const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
 
     function handleKeywordChange(event: ChangeEvent<HTMLInputElement>) {
         setKeyword(event.target.value);
     }
-//กดครั้งแรก → เพิ่ม id เข้า favorite list กดอีกครั้ง เอา id ออกจาก favorite list
+    //กดครั้งแรก → เพิ่ม id เข้า favorite list กดอีกครั้ง เอา id ออกจาก favorite list
     function handleToggleFavorite(band: Band) {
         const id = band.id;
         setFavoriteIds((prevIds) =>
@@ -24,7 +24,7 @@ export default function BandsExplorer({ bands }: BandsExplorerProps) {
                 : [...prevIds, id]
         );
     }
-//โค้ดชุดนี้เป็นส่วนของการค้นหา รายการวงดนตรีตาม keyword ที่ผู้ใช้พิมพ์เข้ามา มาดูทีละบรรทัด
+    //โค้ดชุดนี้เป็นส่วนของการค้นหา รายการวงดนตรีตาม keyword ที่ผู้ใช้พิมพ์เข้ามา มาดูทีละบรรทัด
     const searchText = keyword.trim().toLowerCase();
     const visibleBands = bands.filter(
         (band) =>
@@ -46,13 +46,7 @@ export default function BandsExplorer({ bands }: BandsExplorerProps) {
                         placeholder="ค้นหาชื่อวงดนตรีหรือข้อมูล..."
                     />
                     {keyword && (
-                        <button
-                            className="search-box__clear"
-                            type="button"
-                            aria-label="ล้างคำค้นหา"
-                            onClick={() => setKeyword("")}
-                        >
-                            x
+                        <button className="search-box__clear" type="button" aria-label="ล้างคำค้นหา" onClick={() => setKeyword("")}>
                         </button>
                     )}
                 </label>
@@ -68,10 +62,10 @@ export default function BandsExplorer({ bands }: BandsExplorerProps) {
             ) : (
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {visibleBands.map((band) => (
-                        <BandsCard key={band.id} 
-                        bands={band}
-                        isFavorite={favoriteIds.includes(band.id)}
-                        onToggleFavorite={handleToggleFavorite}/>
+                        <BandsCard key={band.id}
+                            bands={band}
+                            isFavorite={favoriteIds.includes(band.id)}
+                            onToggleFavorite={handleToggleFavorite} />
                     ))}
                 </div>
             )}
